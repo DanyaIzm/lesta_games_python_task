@@ -41,6 +41,7 @@ def is_even_bitwise(value: int) -> bool:
 Код исходной функции и другого алгоритма представлен в модуле **task_1.main**
 
 Тесты представлены в модуле tests.test_task_1.test_is_even
+
 Бенчмарки представлены в модуле tests.test_task_1.benchmarks
 
 **Бенчмарки:**
