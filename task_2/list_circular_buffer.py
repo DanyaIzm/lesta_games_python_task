@@ -34,6 +34,14 @@ class ListCircularBuffer(Generic[T]):
         self._size = size
 
     def push(self, value: T) -> None:
+        """Push value into the circular buffer
+
+        Args:
+            value (T): value to push
+
+        Raises:
+            BufferIsFullError: raised if buffer is full
+        """
         if self._is_full():
             raise BufferIsFullError("Buffer is full")
 
@@ -41,6 +49,14 @@ class ListCircularBuffer(Generic[T]):
         self._increment_tail()
 
     def pop(self) -> T:
+        """Pull value from the circular buffer
+
+        Raises:
+            BufferIsEmptyError: raised if there is nothing to pull
+
+        Returns:
+            T: pulled value
+        """
         if self._is_empty():
             raise BufferIsEmptyError("Buffer is empty")
 
