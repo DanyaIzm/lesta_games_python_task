@@ -27,7 +27,7 @@ def memory_profile_array() -> None:
     print(hpy().heap())
 
 
-def run_memory_profiler():
+def run_memory_profiler() -> None:
     memory_profile_list()
     memory_profile_array()
 
