@@ -1,4 +1,4 @@
-from typing import Literal, Type, TypeAlias, TypeVar, Generic, cast
+from typing import Literal, TypeAlias, TypeVar, Generic, cast
 from array import array
 from .exceptions_ import (
     BufferIsEmptyError,
@@ -13,10 +13,6 @@ _UnicodeTypeCode: TypeAlias = Literal["u"]
 _TypeCode: TypeAlias = _IntTypeCode | _FloatTypeCode | _UnicodeTypeCode
 
 T = TypeVar("T", int, float, str)
-
-
-class _EmptyValue:
-    __slots__ = ()
 
 
 class ArrayCircularBuffer(Generic[T]):
@@ -50,7 +46,7 @@ class ArrayCircularBuffer(Generic[T]):
         if self._is_full():
             raise BufferIsFullError("Buffer is full")
 
-        self._queue[self._tail] = value
+        self._queue[self._tail] = value  # type: ignore[call-overload]
         self._empty_full_mapping[self._tail] = 1
         self._increment_tail()
 
@@ -63,7 +59,7 @@ class ArrayCircularBuffer(Generic[T]):
         self._empty_full_mapping[self._head] = 0
         self._increment_head()
 
-        return value
+        return cast(T, value)
 
     def _validate_size(self, size: int) -> None:
         """Validates buffer size argument and raises if it is invalid
