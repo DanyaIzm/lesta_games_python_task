@@ -16,7 +16,7 @@ def memory_profile_list() -> None:
 
 
 def memory_profile_array() -> None:
-    queue = ArrayCircularBuffer(10000, "L")
+    queue = ArrayCircularBuffer(10000, "l")
 
     for i in range(5000):
         queue.push(i)
